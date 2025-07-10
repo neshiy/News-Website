@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEWSORA - Tech News</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar (Same as other pages) -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <h1>NEWSORA</h1>
+            </div>
+            
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="loggedhome.html">Home</a></li>
+                <li class="nav-item"><a href="tech.html">Tech</a></li>
+                <li class="nav-item"><a href="business.html" class="active">Business</a></li>
+                <li class="nav-item"><a href="fashion.html" class="active">Fashion</a></li>
+                <li class="nav-item"><a href="culture.html" class="active">Culture</a></li>
+            </ul>
+            
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Tech News Section -->
+    <section class="category-section">
+        <div class="container">
+            <h2 class="section-title">Tech News</h2>
+            <div class="category-description">
+            </div>
+            
+            <div class="news-grid" id="techNewsGrid">
+                <!-- Tech news articles will be loaded here -->
+            </div>
+            
+            <div class="load-more-container">
+                <button id="loadMoreTechBtn" class="btn btn-load-more">Load More Tech News</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (Same as other pages) -->
+    <footer class="footer">
+       <div class="footer-container">
+            <div class="footer-brand">
+                <h2 class="footer-logo">NEWSORA</h2>
+                <p class="footer-tagline"> THE NEW CUTTTING EDGE NEWS STYLES BRINGING THE LATEST NEWS TO YOU</p>
+            </div>
+            
+            <div class="footer-address">
+                Phone number: (806) 827-7348
+                <p>814 S 5th St, Texhoma, Oklahoma 73949, USA</p>
+                <p>United States</p>
+                <p>Phone number: (806) 827-7348</p>
+                <p>Email: info@newsora.com</p>
+            </div>
+            
+            <div class="footer-social">
+                <h3>Connect With Us</h3>
+                <div class="social-icons">
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="#" aria-label="Contact"><i class="fas fa-phone-alt"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 NEWSORA NEWS. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const techNewsArticles = [
+    {
+        title: "Apple Unveils Revolutionary New Chip Architecture",
+        description: "The new M3 processors promise 50% better performance with 30% less power consumption.",
+        imageUrl: "https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        source: "Tech Today",
+        date: "2023-05-20",
+        category: "Hardware"
+    },
+    {
+        title: "Google Announces Breakthrough in Quantum Computing",
+        description: "Researchers achieved quantum supremacy with a 72-qubit processor solving previously impossible problems.",
+        imageUrl: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        source: "Quantum News",
+        date: "2023-05-19",
+        category: "Innovation"
+    },
+    {
+        title: "Microsoft Integrates AI Copilot Across All Products",
+        description: "The AI assistant will now be available in Windows, Office, and even Xbox platforms.",
+        imageUrl: "https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        source: "AI Daily",
+        date: "2023-05-18",
+        category: "Software"
+    },
+    {
+        title: "Tesla Releases Full Self-Driving Version 12",
+        description: "The latest update brings city street navigation to all compatible vehicles worldwide.",
+        imageUrl: "https://images.unsplash.com/photo-1551836022-d5d44eef8b86?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        source: "Auto Tech",
+        date: "2023-05-17",
+        category: "Transportation"
+    },
+    {
+        title: "Meta's New VR Headset Needs No Controllers",
+        description: "The Quest 3 uses advanced hand tracking for a completely immersive experience.",
+        imageUrl: "https://images.unsplash.com/photo-1593508512255-86ab42a8e620?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        source: "VR World",
+        date: "2023-05-16",
+        category: "Gadgets"
+    },
+    {
+        title: "OpenAI Releases GPT-5 With Multimodal Capabilities",
+        description: "The new model can process text, images, and audio simultaneously for more natural interactions.",
+        imageUrl: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        source: "AI Frontier",
+        date: "2023-05-15",
+        category: "Artificial Intelligence"
+    }
+];
+
+// Load Tech News
+function loadTechNews(page = 1, pageSize = 6) {
+    const startIndex = (page - 1) * pageSize;
+    const endIndex = startIndex + pageSize;
+    const articlesToShow = techNewsArticles.slice(startIndex, endIndex);
+    const newsGrid = document.getElementById('techNewsGrid');
+
+    if (articlesToShow.length === 0) {
+        document.getElementById('loadMoreTechBtn').style.display = 'none';
+        return;
+    }
+
+    articlesToShow.forEach(article => {
+        const articleElement = document.createElement('div');
+        articleElement.className = 'news-article tech-article';
+        
+        articleElement.innerHTML = `
+            <span class="tech-tag">${article.category}</span>
+            <img src="${article.imageUrl}" alt="${article.title}" class="article-image">
+            <div class="article-content">
+                <h3 class="article-title">${article.title}</h3>
+                <p class="article-description">${article.description}</p>
+                <div class="article-meta">
+                    <span>${article.source}</span>
+                    <span>${new Date(article.date).toLocaleDateString()}</span>
+                </div>
+            </div>
+        `;
+        
+        newsGrid.appendChild(articleElement);
+    });
+}
+
+// Initialize Tech Page
+if (document.getElementById('techNewsGrid')) {
+    let currentTechPage = 1;
+    loadTechNews(currentTechPage);
+    
+    document.getElementById('loadMoreTechBtn').addEventListener('click', function() {
+        currentTechPage++;
+        loadTechNews(currentTechPage);
+    });
+
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+    
+    hamburger.addEventListener('click', function() {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+    
+    // Close menu when clicking on a nav item (for mobile)
+    const navItems = document.querySelectorAll('.nav-item');
+    navItems.forEach(item => {
+        item.addEventListener('click', function() {
+            if (window.innerWidth <= 768) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+    });
+    
+    // Close menu when resizing to desktop
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768) {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
+    });
+}
+
+    </script>
+</body>
+</html>

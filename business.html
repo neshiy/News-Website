@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEWSORA - Business News</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <h1>NEWSORA</h1>
+            </div>
+            
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="loggedhome.html">Home</a></li>
+                <li class="nav-item"><a href="tech.html">Tech</a></li>
+                <li class="nav-item"><a href="business.html" class="active">Business</a></li>
+                <li class="nav-item"><a href="fashion.html" class="active">Fashion</a></li>
+                <li class="nav-item"><a href="culture.html" class="active">Culture</a></li>
+            </ul>
+            
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Business News Section -->
+    <section class="category-section">
+        <div class="container">
+            <h2 class="section-title">Business News</h2>
+            <div class="category-description">
+            </div>
+            
+            <div class="news-grid" id="businessNewsGrid">
+                <!-- Business news articles will be loaded here -->
+            </div>
+            
+            <div class="load-more-container">
+                <button id="loadMoreBusinessBtn" class="btn btn-load-more">Load More Business News</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h2 class="footer-logo">NEWSORA</h2>
+                <p class="footer-tagline"> THE NEW CUTTTING EDGE NEWS STYLES BRINGING THE LATEST NEWS TO YOU</p>
+            </div>
+            
+            <div class="footer-address">
+                Phone number: (806) 827-7348
+                <p>814 S 5th St, Texhoma, Oklahoma 73949, USA</p>
+                <p>United States</p>
+                <p>Phone number: (806) 827-7348</p>
+                <p>Email: info@newsora.com</p>
+            </div>
+            
+            <div class="footer-social">
+                <h3>Connect With Us</h3>
+                <div class="social-icons">
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="#" aria-label="Contact"><i class="fas fa-phone-alt"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 NEWSORA NEWS. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const businessNewsArticles = [
+    {
+        title: "Stock Markets Reach Record High Amid Economic Recovery",
+        description: "Global markets surge as inflation fears ease and consumer spending increases.",
+        imageUrl: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        source: "Financial Times",
+        date: "2023-05-20",
+        category: "Markets",
+        trend: "up",
+        change: "+1.8%"
+    },
+    {
+        title: "Fed Announces 0.25% Interest Rate Hike",
+        description: "Central bank continues cautious approach to combat inflation without stifling growth.",
+        imageUrl: "https://images.unsplash.com/photo-1553729459-efe14ef6055d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        source: "Wall Street Journal",
+        date: "2023-05-19",
+        category: "Economy",
+        trend: "neutral",
+        change: "0.0%"
+    },
+    {
+        title: "Tech Startups See Funding Winter Continue in Q2",
+        description: "Venture capital investments drop 40% compared to same period last year.",
+        imageUrl: "https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        source: "VC Daily",
+        date: "2023-05-18",
+        category: "Startups",
+        trend: "down",
+        change: "-2.3%"
+    },
+    {
+        title: "Major Merger Creates New Retail Giant",
+        description: "Two Fortune 500 companies join forces in $45 billion deal that reshapes industry.",
+        imageUrl: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        source: "Business Week",
+        date: "2023-05-17",
+        category: "Corporate",
+        trend: "up",
+        change: "+3.1%"
+    },
+    {
+        title: "Cryptocurrency Markets Volatile After Regulation News",
+        description: "Digital assets swing wildly as governments announce new oversight framework.",
+        imageUrl: "https://images.unsplash.com/photo-1621761191319-c6fb62004040?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        source: "Crypto News",
+        date: "2023-05-16",
+        category: "Finance",
+        trend: "neutral",
+        change: "0.5%"
+    },
+    {
+        title: "Global Supply Chain Issues Begin to Ease",
+        description: "Shipping delays improve as ports clear backlogs and new routes open.",
+        imageUrl: "https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        source: "Logistics Today",
+        date: "2023-05-15",
+        category: "Trade",
+        trend: "up",
+        change: "+1.2%"
+    }
+];
+
+// Load Business News
+function loadBusinessNews(page = 1, pageSize = 6) {
+    const startIndex = (page - 1) * pageSize;
+    const endIndex = startIndex + pageSize;
+    const articlesToShow = businessNewsArticles.slice(startIndex, endIndex);
+    const newsGrid = document.getElementById('businessNewsGrid');
+
+    if (articlesToShow.length === 0) {
+        document.getElementById('loadMoreBusinessBtn').style.display = 'none';
+        return;
+    }
+
+    articlesToShow.forEach(article => {
+        const articleElement = document.createElement('div');
+        articleElement.className = 'news-article business-article';
+        
+        articleElement.innerHTML = `
+            <span class="business-tag">${article.category}</span>
+            <img src="${article.imageUrl}" alt="${article.title}" class="article-image">
+            <div class="article-content">
+                <h3 class="article-title">${article.title}</h3>
+                <p class="article-description">${article.description}</p>
+                <div class="article-meta">
+                    <span>${article.source}</span>
+                    <span>${new Date(article.date).toLocaleDateString()}</span>
+                </div>
+                <div class="market-indicator ${article.trend}">
+                    <i class="fas fa-${article.trend === 'up' ? 'arrow-up' : article.trend === 'down' ? 'arrow-down' : 'equals'}"></i>
+                    <span>${article.change}</span>
+                </div>
+            </div>
+        `;
+        
+        newsGrid.appendChild(articleElement);
+    });
+}
+
+// Initialize Business Page
+if (document.getElementById('businessNewsGrid')) {
+    let currentBusinessPage = 1;
+    loadBusinessNews(currentBusinessPage);
+    
+    document.getElementById('loadMoreBusinessBtn').addEventListener('click', function() {
+        currentBusinessPage++;
+        loadBusinessNews(currentBusinessPage);
+    });
+
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+    
+    hamburger.addEventListener('click', function() {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+    
+    // Close menu when clicking on a nav item (for mobile)
+    const navItems = document.querySelectorAll('.nav-item');
+    navItems.forEach(item => {
+        item.addEventListener('click', function() {
+            if (window.innerWidth <= 768) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+    });
+    
+    // Close menu when resizing to desktop
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768) {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
+    });
+}
+    </script>
+</body>
+</html>

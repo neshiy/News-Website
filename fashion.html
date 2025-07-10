@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEWSORA - Fashion News</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <h1>NEWSORA</h1>
+            </div>
+            
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="loggedhome.html">Home</a></li>
+                <li class="nav-item"><a href="tech.html">Tech</a></li>
+                <li class="nav-item"><a href="business.html">Business</a></li>
+                <li class="nav-item"><a href="fashion.html" class="active">Fashion</a></li>
+                <li class="nav-item"><a href="culture.html" class="active">Culture</a></li>
+            </ul>
+            
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Fashion News Section -->
+    <section class="category-section">
+        <div class="container">
+            <h2 class="section-title">Fashion News</h2>
+            <div class="category-description">
+            </div>
+            
+            <div class="news-grid" id="fashionNewsGrid">
+                <!-- Fashion news articles will be loaded here -->
+            </div>
+            
+            <div class="load-more-container">
+                <button id="loadMoreFashionBtn" class="btn btn-load-more">Load More Fashion News</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+       <div class="footer-container">
+            <div class="footer-brand">
+                <h2 class="footer-logo">NEWSORA</h2>
+                <p class="footer-tagline"> THE NEW CUTTTING EDGE NEWS STYLES BRINGING THE LATEST NEWS TO YOU</p>
+            </div>
+            
+            <div class="footer-address">
+                Phone number: (806) 827-7348
+                <p>814 S 5th St, Texhoma, Oklahoma 73949, USA</p>
+                <p>United States</p>
+                <p>Phone number: (806) 827-7348</p>
+                <p>Email: info@newsora.com</p>
+            </div>
+            
+            <div class="footer-social">
+                <h3>Connect With Us</h3>
+                <div class="social-icons">
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="#" aria-label="Contact"><i class="fas fa-phone-alt"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 NEWSORA NEWS. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Fashion News Data - 12 Articles
+        const fashionNewsArticles = [
+            {
+                title: "Paris Fashion Week: The Most Stunning Looks",
+                description: "The Spring/Summer collections dazzled with bold colors and innovative silhouettes from <span class='designer-highlight'>Chanel</span> and <span class='designer-highlight'>Dior</span>.",
+                imageUrl: "https://images.unsplash.com/photo-1479064555552-3ef4979f8908?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                source: "Vogue",
+                date: "2023-05-25",
+                category: "Runway",
+                status: "trending-up",
+                statusText: "Trending Now"
+            },
+            {
+                title: "Sustainable Fashion Takes Center Stage",
+                description: "<span class='designer-highlight'>Stella McCartney</span> leads the charge with 100% eco-friendly materials in her new collection.",
+                imageUrl: "https://images.unsplash.com/photo-1604671801908-6f0c6a092c05?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                source: "Elle",
+                date: "2023-05-24",
+                category: "Sustainability",
+                status: "trending-up",
+                statusText: "Hot Trend"
+            },
+            {
+                title: "Met Gala 2023: Best Dressed Celebrities",
+                description: "<span class='designer-highlight'>Blake Lively</span> and <span class='designer-highlight'>Ryan Reynolds</span> stole the show with their coordinated vintage-inspired looks.",
+                imageUrl: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                source: "Harper's Bazaar",
+                date: "2023-05-23",
+                category: "Events",
+                status: "trending-up",
+                statusText: "Viral"
+            },
+            {
+                title: "Denim Makes a Major Comeback",
+                description: "From wide-leg to patchwork, denim dominates summer 2023 trends according to <span class='designer-highlight'>Levi's</span> creative director.",
+                imageUrl: "https://images.unsplash.com/photo-1543076447-215ad9ba6923?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                source: "GQ",
+                date: "2023-05-22",
+                category: "Trends",
+                status: "trending-up",
+                statusText: "Must-Have"
+            },
+            {
+                title: "Luxury Brands Embrace Virtual Fashion",
+                description: "<span class='designer-highlight'>Balenciaga</span> and <span class='designer-highlight'>Gucci</span> launch digital-only clothing collections for avatars and social media.",
+                imageUrl: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                source: "WWD",
+                date: "2023-05-21",
+                category: "Innovation",
+                status: "new-collection",
+                statusText: "New Release"
+            },
+            {
+                title: "The Rise of Gender-Neutral Fashion",
+                description: "Young designers are breaking boundaries with collections that transcend traditional gender norms.",
+                imageUrl: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                source: "i-D",
+                date: "2023-05-20",
+                category: "Culture",
+                status: "trending-up",
+                statusText: "Breaking Trend"
+            },
+            {
+                title: "Accessory Report: Mini Bags Dominate",
+                description: "The smaller the better this season, with <span class='designer-highlight'>Jacquemus</span> leading the micro-bag movement.",
+                imageUrl: "https://images.unsplash.com/photo-1591348122449-8af5c7fbd1ea?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                source: "Marie Claire",
+                date: "2023-05-19",
+                category: "Accessories",
+                status: "trending-up",
+                statusText: "It Item"
+            },
+            {
+                title: "Streetwear Meets Haute Couture",
+                description: "<span class='designer-highlight'>Virgil Abloh's</span> legacy continues as luxury brands collaborate with streetwear labels.",
+                imageUrl: "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                source: "Hypebeast",
+                date: "2023-05-18",
+                category: "Streetwear",
+                status: "trending-up",
+                statusText: "Collaboration"
+            },
+            {
+                title: "The Return of 90s Grunge Fashion",
+                description: "Plaid shirts, combat boots, and slip dresses make a comeback with a modern twist.",
+                imageUrl: "https://images.unsplash.com/photo-1561526116-e2460f4d40a8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                source: "Nylon",
+                date: "2023-05-17",
+                category: "Trends",
+                status: "trending-up",
+                statusText: "Revival"
+            },
+            {
+                title: "Asian Designers Shine at International Shows",
+                description: "Talents from Seoul, Tokyo, and Shanghai are redefining global fashion aesthetics.",
+                imageUrl: "https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                source: "Vogue International",
+                date: "2023-05-16",
+                category: "Global",
+                status: "trending-up",
+                statusText: "Spotlight"
+            },
+            {
+                title: "Celebrity Fashion Lines Breaking Records",
+                description: "<span class='designer-highlight'>Rihanna's</span> Savage X Fenty and <span class='designer-highlight'>Harry Styles'</span> Pleasing lead in celebrity-branded fashion sales.",
+                imageUrl: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                source: "Business of Fashion",
+                date: "2023-05-15",
+                category: "Celebrity",
+                status: "trending-up",
+                statusText: "Best Seller"
+            },
+            {
+                title: "Fashion Tech: Smart Fabrics Revolution",
+                description: "New materials that change color, regulate temperature, and even charge devices are coming to retail.",
+                imageUrl: "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                source: "TechStyle",
+                date: "2023-05-14",
+                category: "Innovation",
+                status: "new-collection",
+                statusText: "Future Tech"
+            }
+        ];
+
+        // Load Fashion News
+        function loadFashionNews(page = 1, pageSize = 6) {
+            const startIndex = (page - 1) * pageSize;
+            const endIndex = startIndex + pageSize;
+            const articlesToShow = fashionNewsArticles.slice(startIndex, endIndex);
+            const newsGrid = document.getElementById('fashionNewsGrid');
+
+            if (articlesToShow.length === 0) {
+                document.getElementById('loadMoreFashionBtn').style.display = 'none';
+                return;
+            }
+
+            articlesToShow.forEach(article => {
+                const articleElement = document.createElement('div');
+                articleElement.className = 'news-article fashion-article';
+                
+                articleElement.innerHTML = `
+                    <span class="fashion-tag">${article.category}</span>
+                    <img src="${article.imageUrl}" alt="${article.title}" class="article-image">
+                    <div class="article-content">
+                        <h3 class="article-title">${article.title}</h3>
+                        <p class="article-description">${article.description}</p>
+                        <div class="article-meta">
+                            <span>${article.source}</span>
+                            <span>${new Date(article.date).toLocaleDateString()}</span>
+                        </div>
+                        <span class="trend-status ${article.status}">${article.statusText}</span>
+                    </div>
+                `;
+                
+                newsGrid.appendChild(articleElement);
+            });
+        }
+
+        // Initialize Fashion Page
+        if (document.getElementById('fashionNewsGrid')) {
+            let currentFashionPage = 1;
+            loadFashionNews(currentFashionPage);
+            
+            document.getElementById('loadMoreFashionBtn').addEventListener('click', function() {
+                currentFashionPage++;
+                loadFashionNews(currentFashionPage);
+            });
+
+            const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+    
+    hamburger.addEventListener('click', function() {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+    
+    // Close menu when clicking on a nav item (for mobile)
+    const navItems = document.querySelectorAll('.nav-item');
+    navItems.forEach(item => {
+        item.addEventListener('click', function() {
+            if (window.innerWidth <= 768) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+    });
+    
+    // Close menu when resizing to desktop
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768) {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
+    });
+        }
+    </script>
+</body>
+</html>

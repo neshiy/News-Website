@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEWSORA - Culture News</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <h1>NEWSORA</h1>
+            </div>
+            
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="loggedhome.html">Home</a></li>
+                <li class="nav-item"><a href="tech.html">Tech</a></li>
+                <li class="nav-item"><a href="business.html">Business</a></li>
+                <li class="nav-item"><a href="fashion.html">Fashion</a></li>
+                <li class="nav-item"><a href="culture.html" class="active">Culture</a></li>
+            </ul>
+            
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Culture News Section -->
+    <section class="category-section">
+        <div class="container">
+            <h2 class="section-title">Culture News</h2>
+            <div class="category-description">
+            </div>
+            
+            <div class="news-grid" id="cultureNewsGrid">
+                <!-- Culture news articles will be loaded here -->
+            </div>
+            
+            <div class="load-more-container">
+                <button id="loadMoreCultureBtn" class="btn btn-load-more">Load More Culture News</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h2 class="footer-logo">NEWSORA</h2>
+                <p class="footer-tagline"> THE NEW CUTTTING EDGE NEWS STYLES BRINGING THE LATEST NEWS TO YOU</p>
+            </div>
+            
+            <div class="footer-address">
+                Phone number: (806) 827-7348
+                <p>814 S 5th St, Texhoma, Oklahoma 73949, USA</p>
+                <p>United States</p>
+                <p>Phone number: (806) 827-7348</p>
+                <p>Email: info@newsora.com</p>
+            </div>
+            
+            <div class="footer-social">
+                <h3>Connect With Us</h3>
+                <div class="social-icons">
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="#" aria-label="Contact"><i class="fas fa-phone-alt"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 NEWSORA NEWS. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Culture News Data - 12 Articles (4 food, 4 nature, 4 history)
+        const cultureNewsArticles = [
+            // Food Articles
+            {
+                title: "UNESCO Adds 6 New Food Traditions to Heritage List",
+                description: "The cultural significance of <span class='culture-highlight'>Japanese washoku</span>, <span class='culture-highlight'>Mediterranean cuisine</span>, and four other food traditions recognized globally.",
+                imageUrl: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                source: "Cultural Preservation Journal",
+                date: "2023-05-25",
+                category: "Food",
+                readTime: "4 min read"
+            },
+            {
+                title: "The Revival of Ancient Grains in Modern Cooking",
+                description: "Chefs worldwide are rediscovering <span class='culture-highlight'>spelt</span>, <span class='culture-highlight'>farro</span>, and <span class='culture-highlight'>teff</span> - grains that sustained civilizations for millennia.",
+                imageUrl: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                source: "Gastronomy Today",
+                date: "2023-05-24",
+                category: "Food",
+                readTime: "5 min read"
+            },
+            {
+                title: "Mexico's 2000-Year-Old Chocolate Tradition Continues",
+                description: "Artisans in <span class='culture-highlight'>Oaxaca</span> preserve pre-Hispanic methods of chocolate preparation using traditional stone grinders.",
+                imageUrl: "https://images.unsplash.com/photo-1511381939415-e44015466834?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                source: "Culinary Heritage",
+                date: "2023-05-23",
+                category: "Food",
+                readTime: "6 min read"
+            },
+            {
+                title: "The Cultural Significance of Tea Ceremonies Worldwide",
+                description: "From <span class='culture-highlight'>Japanese chanoyu</span> to <span class='culture-highlight'>Moroccan atai</span>, how tea rituals reflect cultural values across civilizations.",
+                imageUrl: "https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                source: "Global Traditions",
+                date: "2023-05-22",
+                category: "Food",
+                readTime: "7 min read"
+            },
+            
+            // Nature Articles
+            {
+                title: "Indigenous Fire Management Revitalizes Ecosystems",
+                description: "<span class='culture-highlight'>Australian Aboriginal</span> and <span class='culture-highlight'>California Native American</span> techniques are preventing catastrophic wildfires.",
+                imageUrl: "https://images.unsplash.com/photo-1586348943529-beaae6c28db9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                source: "Ecological Preservation",
+                date: "2023-05-21",
+                category: "Nature",
+                readTime: "5 min read"
+            },
+            {
+                title: "Sacred Groves: The Last Refuges of Biodiversity",
+                description: "From <span class='culture-highlight'>India's devrais</span> to <span class='culture-highlight'>West Africa's fetish forests</span>, these protected spiritual sites harbor rare species.",
+                imageUrl: "https://images.unsplash.com/photo-1476231682828-37e571bc172f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                source: "Nature & Culture",
+                date: "2023-05-20",
+                category: "Nature",
+                readTime: "6 min read"
+            },
+            {
+                title: "The Cultural Roots of Japan's Cherry Blossom Festival",
+                description: "How <span class='culture-highlight'>hanami</span> evolved from aristocratic poetry parties to a national celebration of transience.",
+                imageUrl: "https://images.unsplash.com/photo-1492571350019-22de08371fd3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                source: "Seasonal Traditions",
+                date: "2023-05-19",
+                category: "Nature",
+                readTime: "4 min read"
+            },
+            {
+                title: "Native American Corn: The Three Sisters Planting Method",
+                description: "The ancient <span class='culture-highlight'>Iroquois</span> agricultural system combining corn, beans, and squash continues to inspire sustainable farming.",
+                imageUrl: "https://images.unsplash.com/photo-1604977047700-d1b9ca0dfc30?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                source: "Traditional Knowledge",
+                date: "2023-05-18",
+                category: "Nature",
+                readTime: "5 min read"
+            },
+            
+            // History Articles
+            {
+                title: "Deciphering the Voynich Manuscript: New Breakthroughs",
+                description: "AI analysis suggests the mysterious 15th-century document may contain <span class='culture-highlight'>proto-Romance language</span> from medieval Europe.",
+                imageUrl: "https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                source: "Historical Mysteries",
+                date: "2023-05-17",
+                category: "History",
+                readTime: "8 min read"
+            },
+            {
+                title: "The Silk Road's Cultural Legacy in Modern Cities",
+                description: "How <span class='culture-highlight'>Samarkand</span>, <span class='culture-highlight'>Kashgar</span>, and <span class='culture-highlight'>Xi'an</span> preserve the multicultural exchange of the ancient trade routes.",
+                imageUrl: "https://images.unsplash.com/photo-1527631746610-bca00a040d60?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                source: "Archaeology Today",
+                date: "2023-05-16",
+                category: "History",
+                readTime: "7 min read"
+            },
+            {
+                title: "Rediscovering Africa's Great Medieval Civilizations",
+                description: "New excavations reveal the splendor of <span class='culture-highlight'>Mali</span>, <span class='culture-highlight'>Great Zimbabwe</span>, and the <span class='culture-highlight'>Swahili Coast</span> kingdoms.",
+                imageUrl: "https://images.unsplash.com/photo-1618742396483-3f978a4e7c8d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                source: "African Heritage",
+                date: "2023-05-15",
+                category: "History",
+                readTime: "6 min read"
+            },
+            {
+                title: "The Cultural Impact of the Printing Press Revolution",
+                description: "How Gutenberg's invention transformed <span class='culture-highlight'>literacy</span>, <span class='culture-highlight'>religion</span>, and <span class='culture-highlight'>scientific communication</span> across Europe.",
+                imageUrl: "https://images.unsplash.com/photo-1585771724684-38269d6639fd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                source: "Renaissance Studies",
+                date: "2023-05-14",
+                category: "History",
+                readTime: "5 min read"
+            }
+        ];
+
+        // Load Culture News
+        function loadCultureNews(page = 1, pageSize = 6) {
+            const startIndex = (page - 1) * pageSize;
+            const endIndex = startIndex + pageSize;
+            const articlesToShow = cultureNewsArticles.slice(startIndex, endIndex);
+            const newsGrid = document.getElementById('cultureNewsGrid');
+
+            if (articlesToShow.length === 0) {
+                document.getElementById('loadMoreCultureBtn').style.display = 'none';
+                return;
+            }
+
+            articlesToShow.forEach(article => {
+                const articleElement = document.createElement('div');
+                articleElement.className = `news-article culture-article ${article.category.toLowerCase()}`;
+                
+                articleElement.innerHTML = `
+                    <span class="culture-tag ${article.category.toLowerCase()}-label">${article.category}</span>
+                    <img src="${article.imageUrl}" alt="${article.title}" class="article-image">
+                    <div class="article-content">
+                        <h3 class="article-title">${article.title}</h3>
+                        <p class="article-description">${article.description}</p>
+                        <div class="culture-meta">
+                            <span>${article.source}</span>
+                            <span>${article.readTime}</span>
+                        </div>
+                    </div>
+                `;
+                
+                newsGrid.appendChild(articleElement);
+            });
+        }
+
+        // Initialize Culture Page
+        if (document.getElementById('cultureNewsGrid')) {
+            let currentCulturePage = 1;
+            loadCultureNews(currentCulturePage);
+            
+            document.getElementById('loadMoreCultureBtn').addEventListener('click', function() {
+                currentCulturePage++;
+                loadCultureNews(currentCulturePage);
+            });
+
+            const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+    
+    hamburger.addEventListener('click', function() {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+    
+    // Close menu when clicking on a nav item (for mobile)
+    const navItems = document.querySelectorAll('.nav-item');
+    navItems.forEach(item => {
+        item.addEventListener('click', function() {
+            if (window.innerWidth <= 768) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+    });
+    
+    // Close menu when resizing to desktop
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768) {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
+    });
+        }
+    </script>
+</body>
+</html>
